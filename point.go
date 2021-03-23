@@ -1,26 +1,35 @@
 package main
 
+import "math/big"
+
 type point struct {
 	X int64 `json:"x"`
 	Y int64 `json:"y"`
 }
 
 type pointDistance struct {
-	Point    point `json:"point"`
-	Distance int64 `json:"distance"`
+	Point    point  `json:"point"`
+	Distance string `json:"distance"`
 }
 
-func (p1 point) distanceFrom(p2 point) int64 {
-	distanceX := p1.X - p2.X
-	distanceY := p1.Y - p2.Y
+func (p1 point) distanceFrom(p2 point) *big.Int {
+	distanceX := big.NewInt(0)
+	distanceY := big.NewInt(0)
+	result := big.NewInt(0)
 
-	if distanceX < 0 {
-		distanceX = -distanceX
-	}
+	x1 := big.NewInt(0).SetInt64(p1.X)
+	x2 := big.NewInt(0).SetInt64(p2.X)
 
-	if distanceY < 0 {
-		distanceY = -distanceY
-	}
+	y1 := big.NewInt(0).SetInt64(p1.Y)
+	y2 := big.NewInt(0).SetInt64(p2.Y)
 
-	return distanceX + distanceY
+	distanceX.Sub(x1, x2)
+	distanceY.Sub(y1, y2)
+
+	distanceX.Abs(distanceX)
+	distanceY.Abs(distanceY)
+
+	result.Add(distanceX, distanceY)
+
+	return result
 }
