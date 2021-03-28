@@ -17,9 +17,7 @@ func Test_server_handlePointsGet(t *testing.T) {
 		}
 
 		rr := httptest.NewRecorder()
-		handler := http.HandlerFunc(server.handlePointsGet())
-
-		handler.ServeHTTP(rr, req)
+		server.handlePointsGet().ServeHTTP(rr, req)
 
 		if status := rr.Code; status != http.StatusBadRequest {
 			t.Errorf("handler returned wrong status code: got %v want %v", status, http.StatusBadRequest)
@@ -48,9 +46,7 @@ func Test_server_handlePointsGet(t *testing.T) {
 			req.URL.RawQuery = q.Encode()
 
 			rr := httptest.NewRecorder()
-			handler := http.HandlerFunc(server.handlePointsGet())
-
-			handler.ServeHTTP(rr, req)
+			server.handlePointsGet().ServeHTTP(rr, req)
 
 			if status := rr.Code; status != http.StatusBadRequest {
 				t.Errorf("handler returned wrong status code: got %v want %v", status, http.StatusBadRequest)
@@ -80,9 +76,7 @@ func Test_server_handlePointsGet(t *testing.T) {
 			req.URL.RawQuery = q.Encode()
 
 			rr := httptest.NewRecorder()
-			handler := http.HandlerFunc(server.handlePointsGet())
-
-			handler.ServeHTTP(rr, req)
+			server.handlePointsGet().ServeHTTP(rr, req)
 
 			if status := rr.Code; status != http.StatusBadRequest {
 				t.Errorf("handler returned wrong status code: got %v want %v", status, http.StatusBadRequest)
@@ -112,9 +106,7 @@ func Test_server_handlePointsGet(t *testing.T) {
 			req.URL.RawQuery = q.Encode()
 
 			rr := httptest.NewRecorder()
-			handler := http.HandlerFunc(server.handlePointsGet())
-
-			handler.ServeHTTP(rr, req)
+			server.handlePointsGet().ServeHTTP(rr, req)
 
 			if status := rr.Code; status != http.StatusBadRequest {
 				t.Errorf("handler returned wrong status code: got %v want %v", status, http.StatusBadRequest)
